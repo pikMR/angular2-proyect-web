@@ -1,0 +1,62 @@
+<!-- (producto seleccionado) si existe el producto entra si no no.. container-prods no está especificado... -->
+    <div class="container-prods" *ngIf="productoSeleccionado">
+  <div class="w3-card-4">
+    <div class="panel panel-default effect{{random}}">
+      <h3 class="masked">{{productoSeleccionado.nombre}}</h3>
+      <div class="panel-body">
+        <div class="w3-display-container w3-text-white"><img src="{{productoSeleccionado.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3"></div>
+        {{productoSeleccionado.descripcion}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="w3-row-padding">
+  <div *ngFor="let dcat of detalleCats" class="w3-third w3-center">
+    <div class="panel panel-default effect6">
+      <img src="{{productoSeleccionado.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3">
+      <div class="w3-xlarge w3-display-bottomleft w3-padding">{{dcat.Nombre}}</div>
+    </div>
+
+    <table class="w3-table-all w3-centered">
+      <tr>
+        <th>
+          Precio
+        </th>
+        <th>
+          Stock
+        </th>
+      </tr>
+      <tr>
+        <td><h3> {{dcat.Precio}}€/KG </h3></td>
+        <td><h3>{{dcat.UnidadesStock}}</h3></td>
+      </tr>
+      </table>
+
+</div>
+</div>
+        
+      
+<!-- Varios productos (resonsive por defecto)-->
+  <div class="container-prods" *ngIf="detalleProds">
+  <div class="col-sm-6 col-sm-offset-3" *ngFor="let cat of detalleProds">
+    <div class="panel panel-default effect{{random}}">
+      <img src="{{cat.imagen.url}}" class="img-responsive"/>
+      <div class="panel-body">
+        <div class="pull-left"></div>
+        {{cat.descripcion}}
+      </div>
+      </div>
+    </div>
+  </div>
+
+<!-->div class="panel-footer clearfix">
+  <div class="pull-right">
+    <div class="checkbox">
+      <label>
+        <input value="1" checked type="checkbox"> Show Preview
+      </label>
+    </div>
+  </div>
+</div!-->
+
+

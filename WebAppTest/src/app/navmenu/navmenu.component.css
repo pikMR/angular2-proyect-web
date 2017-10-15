@@ -1,0 +1,272 @@
+/*
+    Elemento que se despliega de los selectores en el menu,
+    sale al fondo de la pantalla con un top del 100% (vendor.css), hay que 
+    modificarlo para que se vea correctamente.
+*/
+
+
+/*
+  MENU SECUNDARIO
+*/
+
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300");
+
+html {
+  font-size: 62.5%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+header {
+  position: relative;
+}
+
+main {
+  padding: 2rem;
+}
+
+
+*,
+*:before,
+*:after {
+  /*  margin: 0;  */
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  background-color: #EEEEEE;
+}
+
+.container {
+  height: 100%;
+}
+
+
+.tutorial {
+  max-width:150vh;
+  margin: 0 auto 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+  .tutorial .slider {
+    width: 0 auto;
+    height: 300px;
+    background-color: #F03861;
+    background-image:url('../../assets/images/bar/big16-bar.jpg');
+  }
+
+  .tutorial .information {
+    width: 100%;
+    padding: 20px 50px;
+    margin-bottom: 30px;
+    font-family: "Open Sans", sans-serif;
+  }
+
+    .tutorial .information h1 {
+      color: #333;
+      font-size: 1.5rem;
+      padding: 0px 10px;
+      border-left: 3px solid #F03861;
+    }
+
+    .tutorial .information h3 {
+      color: #e0e0e0;
+      font-size: 1rem;
+      font-weight: 300;
+      padding: 0px 10px;
+      border-left: 3px solid #F03861;
+    }
+
+    .tutorial .information p {
+      padding: 10px 0px;
+    }
+
+  .tutorial ul {
+    font-size: 0;
+    list-style-type: none;
+  }
+
+    .tutorial ul li {
+      font-family: "Open Sans", sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #333;
+      display: inline-block;
+      padding: 15px;
+      position: relative;
+      z-index:10;
+    }
+
+      .tutorial ul li ul {
+        display: none;
+      }
+
+      .tutorial ul li:hover {
+        cursor: pointer;
+        background-color: #f2f2f2;
+      }
+
+        .tutorial ul li:hover ul {
+          display: block;
+          margin-top: 15px;
+          width: 200px;
+          left: 0;
+          position: absolute;
+        }
+
+          .tutorial ul li:hover ul li {
+            display: block;
+            background-color: #e7e7e7;
+          }
+
+            .tutorial ul li:hover ul li span {
+              float: right;
+              color: #f9f9f9;
+              background-color: #F03861;
+              padding: 2px 5px;
+              text-align: center;
+              font-size: .8rem;
+              border-radius: 3px;
+            }
+
+            .tutorial ul li:hover ul li:hover {
+              background-color: #e0e0e0;
+            }
+
+              .tutorial ul li:hover ul li:hover span {
+                background-color: #ee204e;
+              }
+
+nav{
+  display:none;
+}
+
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1080px;
+    margin: 0 auto;
+    background: #999;
+  }
+
+  nav ul,
+  nav li {
+    flex: 1;
+  }
+
+    nav li:last-child {
+      border-bottom: none;
+    }
+
+
+  nav li {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    font-size: 1.8rem;
+    position: relative;
+    line-height: 50px;
+    color: #fff;
+    text-align: center;
+  }
+    nav li:hover {
+      background: #adacac;
+      color: #fff;
+    }
+
+  nav input,
+  nav label {
+    display: none;
+    width: 36px;
+    height: 36px;
+    background: #555;
+    color: #fff;
+    text-align: center;
+    line-height: 36px;
+    font-size: 1.6rem;
+    border-radius: 2px;
+  }
+
+  nav label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    transition: .4s;
+  }
+
+    nav label:hover {
+      cursor: pointer;
+    }
+
+    nav label:before {
+      font-family: FontAwesome;
+      font-size: 24px;
+      content: "\f0c9";
+      text-align: center;
+    }
+
+
+@media only screen and (max-device-width:480px),
+only screen and (-webkit-min-device-pixel-ratio:2),
+only screen and (min-resolution: 300dpi)
+{
+  .tutorial {
+    display: none;
+  }
+
+  nav {
+    z-index:1000;
+    display: block;
+    position: relative;
+  }
+
+    nav ul {
+      transform: translateY(-100%);
+      box-shadow: 0 0 5px rgba(0,0,0, .7);
+      transition: all .5s;
+      position: absolute;
+      width: 100%;
+    }
+
+    nav li {
+      flex: none;
+      width: 100%;
+      border-bottom: solid 1px #777;
+    }
+
+
+    nav input[type="checkbox"]:checked + ul {
+      transform: translateY(2.5%);
+      width: 100%;
+      background: #999;
+      transition: all .5s;
+    }
+
+    nav label {
+      display: block;
+    }
+
+    nav input[type="checkbox"]:checked + ul li:nth-child(1) {
+      display:block;
+      background: #777;
+      color: #fff;
+    }  
+}
+

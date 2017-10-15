@@ -1,0 +1,30 @@
+<a routerLink="/">Ocultar Productos</a>
+<!--<detalle-producto *ngIf="productoSeleccionado" [productoSeleccionado] = "productoSeleccionado" [titulo] = "titulo">
+</detalle-producto>-->
+<div *ngIf="productoSeleccionado">
+        <h2>
+            {{ productoSeleccionado.nombre | uppercase }} Este es el producto.
+        </h2>
+    <button (click)="irDetalle()"></button>
+</div>
+<div class="alert-info"> Todos los productos</div>
+    <table class="table tabla-color">
+        <thead>
+            <tr>
+                <th><strong>#</strong></th>
+                <th><strong>nombre</strong></th>
+                <th><strong>descripcion</strong></th>
+                <th><strong>precio</strong></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos" (click)="seleccionar(producto)" [class.selected] ="producto === productoSeleccionado">
+                <td>{{producto.id_producto}}</td>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.descripcion}}</td>
+                <td>{{producto.precio}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+

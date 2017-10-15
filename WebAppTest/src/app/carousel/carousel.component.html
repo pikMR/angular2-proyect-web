@@ -1,0 +1,9 @@
+﻿<!-- gracias a scotch.io/tutorials/responsive-carousel-component-with-angular-2 -->
+<div class="carousel">
+    <ul class="slides">
+            <li *ngFor="let image of images">
+                <h3>{{image.title}}</h3>
+                <img src="{{image.url}}" alt="">
+            </li>
+    </ul>
+</div>

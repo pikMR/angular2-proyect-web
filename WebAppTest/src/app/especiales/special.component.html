@@ -1,0 +1,9 @@
+﻿<h3> Top Productos Especiales </h3>
+<div class="grid grid-pad">
+    <div *ngFor="let producto of productos" (click)="irDetalle(producto)" class="col-1-4">
+        <div class="module producto">
+            <h4> {{producto.nombre}}</h4>
+        </div>
+    </div>
+
+</div>

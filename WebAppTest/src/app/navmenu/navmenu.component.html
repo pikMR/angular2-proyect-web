@@ -1,0 +1,40 @@
+<!--  MENU SECUNDARIO !-->
+<div class="container">
+  <nav *ngIf="!rerender">
+    <input type="checkbox" id="css-toggle-menu" name="css-toggle-menu">
+    <ul class="main">
+      <li (click)="moveToIndex()">Inicio</li>
+      <li (click)="moveToNuestros()">Nuestros Productos</li>
+      <li (click)="goContact()">Contacto</li>
+      <li (click)="moveToWhatsapp()">Whatsapp</li>
+      <li (click)="moveToBuscador()">Buscador</li>
+    </ul>
+    <label for="css-toggle-menu" id="css-toggle-menu"></label>
+  </nav>
+  <div class="tutorial">
+    <ul>
+      <li (click)="moveToIndex()">Inicio</li>
+      <li>
+        Nuestros Productos <i class="fa fa-angle-down"></i>
+        <ul>
+          <li *ngFor="let choice of prods" (click)="selectProducto(choice)">{{choice.nombre}}<img src="{{choice.imagen.url}}" /></li>
+        </ul>
+      </li>
+      <li>
+        Oferta Especial <i class="fa fa-angle-down"></i>
+        <ul>
+          <li>Oferta1<span>1€</span></li>
+          <li>Oferta2<span>20€</span></li>
+          <li>Oferta3<span>30€</span></li>
+        </ul>
+      </li>
+      <li (click)="goContact()">Contacto</li>
+      <li (click)="moveToWhatsapp()">[ICO]Whatsapp</li>
+      <li (click)="moveToBuscador()">[ICO]Buscador</li>
+    </ul>
+    <div class="slider"></div>
+    <div class="information">
+      <p>A simple, clean looking dropdown menu effect achieved using pure CSS. Simple functionality, method can be extended to create a secondary dropdown block with few edits.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+﻿.carousel {
+    overflow: hidden;
+    width: 100%;
+}
+
+/*
+    SLIDE DE IMAGENES CENTRADO.
+*/
+.wrapper {
+    width: 100%;
+    margin: 10px auto;
+}

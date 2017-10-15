@@ -1,0 +1,26 @@
+﻿.table.tabla-color > tbody > tr:nth-child(2n+1) > td {
+    background-color: #a1a398 !important;
+    color: white !important;
+}
+
+table.tabla-color > tbody > tr > td:hover {
+    background-color: cornsilk !important;
+    color: indianred;
+}
+
+.table.tabla-color > tbody > tr:nth-child(2n) > td:hover {
+    background-color: #0092ff !important;
+    color: darkorange !important;
+}
+
+.table.tabla-color > tbody > tr:nth-child(2n+1) > td:hover {
+    background-color: white !important;
+    color: lightsteelblue !important;
+}
+
+.selected
+{
+    border: 1px solid;
+    background-color: aliceblue ;
+    opacity : 0.4;
+}
