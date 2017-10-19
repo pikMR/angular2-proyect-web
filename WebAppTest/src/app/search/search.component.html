@@ -1,8 +1,9 @@
 <div class="w3-card-2 w3-center">
   <div class="panel panel-default effect5">
     <h3 class="masked">Busca algo en nuestra Cámara.</h3>
-    <div class="panel-body">
-      <input type="text" class="typeahead tt-query  w3-animate-input" autocomplete="off" spellcheck="false" placeholder="Introducir Texto">
+    <div class="panel-body ">
+      <!-- input type="text" class="typeahead tt-query  w3-animate-input" autocomplete="off" spellcheck="false" placeholder="Introducir Texto"-->
+      <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" placeholder="Introducir Texto" class="completer w3-centered"></ng2-completer>
     </div>
   </div>
 </div>

@@ -36,3 +36,55 @@
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
   }
+
+.completer {
+  text-decoration: solid;
+  color: goldenrod;
+  display: block;
+  font-size: 1.8rem;
+  position: relative;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: burlywood;
+}
+
+:host /deep/ .completer-dropdown-holder {
+  margin: 0 40%;
+  text-decoration: solid;
+  color: goldenrod;
+  display: block;
+  font-size: 1.8rem;
+  position: relative;
+  line-height: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: burlywood;
+}
+
+
+
+@media only screen and (max-device-width:480px), only screen and (-webkit-min-device-pixel-ratio:2), only screen and (min-resolution: 300dpi) {
+  :host /deep/ .completer-dropdown-holder {
+    position:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left: 5%;
+    margin-right:auto;
+    text-decoration: solid;
+    color: deeppink;
+    display: block;
+    font-size: 1.3rem;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: gray;
+  }
+
+  :host /deep/ .completer-input {
+    /* display: block;
+  width: 100%;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;*/
+  }
+}

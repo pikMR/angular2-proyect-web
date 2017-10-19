@@ -1,4 +1,4 @@
-﻿import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './navmenu/navmenu.component';
@@ -19,6 +19,7 @@ import { routing } from '../services/rutas';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { Ng2CompleterModule } from "ng2-completer";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
       FormsModule,
       BsDropdownModule.forRoot(),
       CollapseModule.forRoot(),
-      HttpModule
+      HttpModule,
+      Ng2CompleterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
