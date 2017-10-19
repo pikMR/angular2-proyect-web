@@ -222,6 +222,24 @@ nav{
       text-align: center;
     }
 
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+  input[type=text]:focus {
+    width: 80%;
+  }
 
 @media only screen and (max-device-width:480px),
 only screen and (-webkit-min-device-pixel-ratio:2),
@@ -269,4 +287,5 @@ only screen and (min-resolution: 300dpi)
       color: #fff;
     }  
 }
+
 
