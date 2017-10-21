@@ -3,19 +3,24 @@ import { Router } from '@angular/router';
 import { PRODUCTOS } from '../../mocks/mock-productos';
 import { Producto } from '../../model/producto/producto';
 import { Utils } from '../../services/utils';
+import { ProductoService } from '../../services/producto.service'; // no usado pero se usara
+import { CompleterService, CompleterData } from 'ng2-completer';
 
 @Component({
     selector: 'nav-menu',
     templateUrl: './navmenu.component.html',
-    styleUrls: ['./navmenu.component.css']
+    styleUrls: ['./navmenu.component.css'],
+    providers: [ProductoService] 
 })
 export class NavMenuComponent {
-    esMovil = false;
+    esMovil = false; // transición entre movil y desktop
     rerender = false;
-    constructor(private router: Router, private cdRef: ChangeDetectorRef) {
+
+    constructor(private router: Router, private cdRef: ChangeDetectorRef, private completerService: CompleterService) {
         if (Utils.esMobil())
             this.esMovil = true;
-        //esMovil = Utils.
+
+        this.dataService = completerService.local(this.searchData, 'color', 'color');
     }
 
 
@@ -64,6 +69,8 @@ export class NavMenuComponent {
         console.log(event);
     }
 
+    // busqueda de etiquetas #
+
     public findPos(obj): any {
         var curtop = 0;
         if (obj.offsetParent) {
@@ -73,6 +80,10 @@ export class NavMenuComponent {
             return [curtop];
         }
     }
+
+    /*
+      routing
+    */
 
     moveToBuscador() {
         this.router.navigate(['/busqueda']);
@@ -113,5 +124,20 @@ export class NavMenuComponent {
         if (this.esMovil)
             this.doRerender();
     }
+
+    /*
+      Buscador
+    */
+    protected dataService: CompleterData;
+    protected searchData = [
+        { color: 'red', value: '#f00' },
+        { color: 'green', value: '#0f0' },
+        { color: 'blue', value: '#00f' },
+        { color: 'cyan', value: '#0ff' },
+        { color: 'magenta', value: '#f0f' },
+        { color: 'yellow', value: '#ff0' },
+        { color: 'black', value: '#000' }
+    ];
+    
 
 }

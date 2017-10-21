@@ -99,6 +99,8 @@ body, html {
     }
 
   .tutorial ul {
+    display:flex;
+    flex-wrap:nowrap;
     font-size: 0;
     list-style-type: none;
   }
@@ -114,13 +116,73 @@ body, html {
       z-index:10;
     }
 
-      .tutorial ul li ul {
-        display: none;
+      .tutorial ul .nav-enlaces {
+        margin-top:16px;
+      }
+
+      .tutorial ul li:nth-child(5) {
+        flex: 20;
+      }
+
+    .tutorial ul li:nth-child(6), .tutorial ul li:nth-child(7) {
+      padding-top:20px;
+    }
+
+        .tutorial .iconados a {
+          -moz-transition: background-color .25s ease-in-out;
+          -webkit-transition: background-color .25s ease-in-out;
+          -ms-transition: background-color .25s ease-in-out;
+          transition: background-color .25s ease-in-out;
+          display: inline-block;
+          width: 2.5em;
+          height: 2.5em;
+          text-align: center;
+          line-height: 2.5em;
+          border-radius: 0.35em;
+          outline: 0;
+          opacity: 0.75;
+          text-decoration: none;
+        }
+
+          .tutorial .iconados a:nth-last-child(1) {
+            padding-top:7px;
+            -moz-transition: background-color .25s ease-in-out;
+            -webkit-transition: background-color .25s ease-in-out;
+            -ms-transition: background-color .25s ease-in-out;
+            transition: background-color .25s ease-in-out;
+            display: inline-block;
+            width: 2.5em;
+            height: 2.5em;
+            text-align: center;
+            line-height: 2.5em;
+            border-radius: 0.35em;
+            outline: 0;
+            opacity: 0.75;
+            text-decoration: none;
+          }
+
+          .tutorial ul li ul {
+            display: none;
+          }
+
+      .tutorial ul li input{
+        padding:0;
+      }
+
+      .tutorial ul li .fa-search{
+        position:absolute;
+        left:168px;
+        top:26px;
       }
 
       .tutorial ul li:hover {
         cursor: pointer;
         background-color: #f2f2f2;
+      }
+
+      .tutorial ul li:nth-child(5):hover {
+        cursor: initial;
+        background-color: transparent;
       }
 
         .tutorial ul li:hover ul {
@@ -153,6 +215,8 @@ body, html {
               .tutorial ul li:hover ul li:hover span {
                 background-color: #ee204e;
               }
+
+
 
 nav{
   display:none;
@@ -237,6 +301,7 @@ input[type=text] {
   transition: width 0.4s ease-in-out;
 }
 
+
   input[type=text]:focus {
     width: 80%;
   }
@@ -289,3 +354,6 @@ only screen and (min-resolution: 300dpi)
 }
 
 
+:host /deep/ .completer-input {
+  margin-top:10px;
+}
