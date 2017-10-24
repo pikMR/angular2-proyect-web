@@ -24,7 +24,9 @@ export class DetalleProductoComponent implements OnInit{
 
     }
     ngOnInit(): void {
-
+        /*
+          Selecciona desde las categorias.
+        */
         this.route.params.forEach(
             (params: Params) =>
             { 

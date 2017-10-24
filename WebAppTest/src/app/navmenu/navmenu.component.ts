@@ -1,10 +1,11 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PRODUCTOS } from '../../mocks/mock-productos';
 import { Producto } from '../../model/producto/producto';
 import { Utils } from '../../services/utils';
 import { ProductoService } from '../../services/producto.service'; // no usado pero se usara
 import { CompleterService, CompleterData } from 'ng2-completer';
+import { Observable } from "rxjs/Observable";
 
 @Component({
     selector: 'nav-menu',
@@ -12,15 +13,15 @@ import { CompleterService, CompleterData } from 'ng2-completer';
     styleUrls: ['./navmenu.component.css'],
     providers: [ProductoService] 
 })
-export class NavMenuComponent {
+export class NavMenuComponent{
     esMovil = false; // transición entre movil y desktop
     rerender = false;
 
-    constructor(private router: Router, private cdRef: ChangeDetectorRef, private completerService: CompleterService) {
+    constructor(private router: Router, private cdRef: ChangeDetectorRef, private completerService: CompleterService, private productoService: ProductoService) {
         if (Utils.esMobil())
             this.esMovil = true;
-
-        this.dataService = completerService.local(this.searchData, 'color', 'color');
+        this.dataService = null;
+        
     }
 
 
@@ -28,7 +29,6 @@ export class NavMenuComponent {
      Permitirá recargar el componente
      */
     doRerender() {
-        console.log("restartComponent - navMenu");
         this.rerender = true;
         this.cdRef.detectChanges();
         this.rerender = false;
@@ -129,15 +129,12 @@ export class NavMenuComponent {
       Buscador
     */
     protected dataService: CompleterData;
-    protected searchData = [
-        { color: 'red', value: '#f00' },
-        { color: 'green', value: '#0f0' },
-        { color: 'blue', value: '#00f' },
-        { color: 'cyan', value: '#0ff' },
-        { color: 'magenta', value: '#f0f' },
-        { color: 'yellow', value: '#ff0' },
-        { color: 'black', value: '#000' }
-    ];
-    
+
+    public cargarBuscador(event) {
+        if (this.dataService == null) {
+           this.dataService = this.completerService.local(this.productoService.getProductosNames(), 'Nombre', 'Nombre');
+        }
+    }
+
 
 }

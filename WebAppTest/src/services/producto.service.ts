@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class ProductoService {
     apiValues: string[] = [];
+
     constructor(private _httpService: Http) {
 
     }
@@ -14,17 +15,17 @@ export class ProductoService {
         return PRODUCTOS_DETALLE;
     }
 
+    getProductosNames() {
+        return this._httpService.get('/api/Producto/Names')
+            .map(data => {
+                return data.json();
+            });
+    }
+
     getProductosPorCategoria(id: number): Observable<Producto[]> {
         return this._httpService.get('/api/Producto?cat=' + id)
             .map((response) => <Producto[]>response.json())
             .catch(this.handleError);
-
-        /*var resultado = Producto[];
-        this._httpService.get('/api/Producto?cat=' + id).subscribe(values => {
-            resultado = values.json() as Producto[];
-        });
-
-        return Promise.resolve(resultado);*/
     }
 
     handleError(error: Response) {
@@ -54,10 +55,3 @@ export class ProductoService {
         ).then(() => this.getProductos());
     }
 }
-
-/*
- --- acceso externo al servicio.
-class test extends ProductoService {
-    productos: Producto[] = this.getProducto();
-}
-*/
