@@ -1,6 +1,8 @@
 .carousel {
     overflow: hidden;
     width: 100%;
+    max-height:550px;
+    margin-left: 75px;
 }
 
 .slides {
@@ -45,39 +47,24 @@
     text-transform: uppercase;
 }
 
-@media (max-width:440px) {
+@media (max-width:736px) {
+  .carousel {
+    overflow: hidden;
+    width: auto;
+    max-height: 550px;
+    margin-left: 0px;
+  }
     .carousel img {
-        width: 150%;
+      width: 100%;
     }
 
-    .slides > li {
-        padding-right: 30px;
-        padding-left: 19px;
-    }
+  .slides > li {
+    margin-left: 5px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
 }
 
-@media (max-width:375px) {
-    .carousel img {
-        width: 175%;
-    }
-
-    .slides > li {
-        padding-right: 27.5px;
-        padding-left: 15.5px;
-    }
-}
-
-@media (max-width:325px)
-{
-    .carousel img {
-        width: 200%;
-    }
-
-    .slides > li {
-        padding-right: 25px;
-        padding-left: 12px;
-    }
-}
 
 
 @keyframes carousel {

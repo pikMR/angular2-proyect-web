@@ -1,4 +1,4 @@
-﻿@import url(https://fonts.googleapis.com/css?family=EB+Garamond|Cardo:400italic);
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond|Cardo:400italic);
 
 body {
     margin: 0;
@@ -59,4 +59,10 @@ em {
 
 #features-wrapper {
     padding: 1.5em 0 1.5em 0;
+}
+
+@media (max-width:440px) {
+  em {
+    font-size: 2em;
+  }
 }
