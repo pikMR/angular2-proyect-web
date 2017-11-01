@@ -1,4 +1,4 @@
-<!-- (producto seleccionado) si existe el producto entra si no no.. container-prods no está especificado... -->
+<!-- (categoria seleccionada) si existe la categoria entra si no. container-prods no está especificado... -->
     <div class="container-prods" *ngIf="productoSeleccionado">
   <div class="w3-card-4">
     <div class="panel panel-default effect{{random}}">
@@ -36,7 +36,7 @@
 </div>
         
       
-<!-- Varios productos (resonsive por defecto)-->
+<!-- Varios categorias (resonsive por defecto)-->
   <div class="container-prods" *ngIf="detalleProds">
   <div class="col-sm-6 col-sm-offset-3" *ngFor="let cat of detalleProds">
     <div class="panel panel-default effect{{random}}">
@@ -48,6 +48,19 @@
       </div>
     </div>
   </div>
+
+<!-- Producto Concreto -->
+<div class="container-prods" *ngIf="detalleIndividual">
+  
+    <div class="panel panel-default effect4">
+      <a>{{detalleIndividual.id_producto}}</a>
+      <div class="panel-body">
+        <div class="pull-left"></div>
+        {{detalleIndividual.nombre}}
+      </div>
+    </div>
+    </div>
+
 
 <!-->div class="panel-footer clearfix">
   <div class="pull-right">

@@ -22,6 +22,12 @@ export class ProductoService {
             });
     }
 
+    getProductoPorId(id: number): Observable<Producto[]> {
+        return this._httpService.get('/api/Producto/' + id)
+            .map((response) => <Producto[]>response.json())
+            .catch(this.handleError);
+    }
+
     getProductosPorCategoria(id: number): Observable<Producto[]> {
         return this._httpService.get('/api/Producto?cat=' + id)
             .map((response) => <Producto[]>response.json())
@@ -40,6 +46,7 @@ export class ProductoService {
     }
 
     getProducto(id: number): Promise<Producto> {
+
         return this.getProductosPromise().then(
             (producto) => producto.find(producto => producto.id_producto == id)
         );

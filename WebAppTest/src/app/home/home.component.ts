@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
 
     irDetalle(producto: Producto): void {
         // nos vamos al producto seleccionado.
-        let link = ['/detalle', producto.id_producto];
+        let link = ['/categoria', producto.id_producto];
         this.route.navigate(link);
     }
 }

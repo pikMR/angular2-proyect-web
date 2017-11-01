@@ -4,7 +4,7 @@ import { PRODUCTOS } from '../../mocks/mock-productos';
 import { Producto } from '../../model/producto/producto';
 import { Utils } from '../../services/utils';
 import { ProductoService } from '../../services/producto.service'; // no usado pero se usara
-import { CompleterService, CompleterData } from 'ng2-completer';
+import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
 import { Observable } from "rxjs/Observable";
 
 @Component({
@@ -16,12 +16,13 @@ import { Observable } from "rxjs/Observable";
 export class NavMenuComponent{
     esMovil = false; // transición entre movil y desktop
     rerender = false;
+    buscaSelected: CompleterItem;
 
     constructor(private router: Router, private cdRef: ChangeDetectorRef, private completerService: CompleterService, private productoService: ProductoService) {
         if (Utils.esMobil())
             this.esMovil = true;
         this.dataService = null;
-        
+        this.buscaSelected = null;
     }
 
 
@@ -93,7 +94,7 @@ export class NavMenuComponent{
 
     selectProducto = (item: Producto) => {
         console.log(item.nombre);
-        this.router.navigate(['/detalle/'+item.id_producto]);
+        this.router.navigate(['/categoria/'+item.id_producto]);
     }
 
     moveToWhatsapp() {
@@ -120,7 +121,7 @@ export class NavMenuComponent{
     }
 
     moveToNuestros() {
-        this.router.navigate(['/detalle/all']);
+        this.router.navigate(['/categoria/all']);
         if (this.esMovil)
             this.doRerender();
     }
@@ -136,5 +137,13 @@ export class NavMenuComponent{
         }
     }
 
-
+    getCatalogoPorProducto(selected: CompleterItem) {
+        if (selected) {
+            //console.dir(selected);
+            this.buscaSelected = selected;
+        }
+        //console.log("Cat: " + this.buscaSelected.originalObject["CategoriaPrincipal"]);
+        this.router.navigate(['/detalle/' + this.buscaSelected.originalObject["Id"]]);
+        //this.router.navigate(['/detalle/'+item.id_producto]);
+    }
 }

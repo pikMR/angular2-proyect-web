@@ -30,8 +30,8 @@
       </li>
       <li (click)="goContact()" class="nav-enlaces">Contacto</li>
       <li></li>
-      <li class="iconados"><a class="fa fa-search" href="#"></a><!-->input type="text" name="search" placeholder="Buscar"-->
-        <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" placeholder="Buscar" name="search" type="text" class="completer-input" (click)="cargarBuscador($event)"></ng2-completer>
+      <li class="iconados"><a class="fa fa-search"></a><!-->input type="text" name="search" placeholder="Buscar"-->
+        <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" placeholder="Buscar" name="search" type="text" class="completer-input" (click)="cargarBuscador($event)"  (selected)="getCatalogoPorProducto($event)"></ng2-completer>
       <!-- Search Filled icon by Icons8 -->
        </li>
       <li class="iconados" (click)="moveToWhatsapp()"><a class="fa fa-whatsapp" href="#"></a>Llámanos</li>

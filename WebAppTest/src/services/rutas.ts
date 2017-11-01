@@ -29,7 +29,11 @@ const rutas: Routes = [
         component: DetalleProductoComponent
     },
     {
-        path: 'detalle/all',
+        path: 'categoria/:id',
+        component: DetalleProductoComponent
+    },
+    {
+        path: 'categoria/all',
         component: DetalleProductoComponent
     },
     {
