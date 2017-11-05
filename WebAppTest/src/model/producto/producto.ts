@@ -1,18 +1,20 @@
 import { Image } from '../../app/interface/image.interface';
 export class Producto {
-    id_producto: number;
-    nombre: string;
+    Id: string;
+    Nombre: string;
     descripcion: string;
-    precio: number;
-    tipo: string;
+    Precio: string;
+    CategoriaPrincipal: string;
     imagen: Image;
-    constructor(id: number, n: string, desc: string, p: number, tip: string,img?:Image) {
-        this.id_producto = id;
-        this.nombre = n;
+    UnidadesStock: string;
+    constructor(id: string, n: string, desc: string, p: string, tip: string, img?: Image, stock?: string) {
+        this.Id = id;
+        this.Nombre = n;
         this.descripcion = desc;
-        this.precio = p;
-        this.tipo = tip;
+        this.Precio = p;
+        this.CategoriaPrincipal = tip;
         this.imagen = img;
+        this.UnidadesStock = stock;
     }
 
 }

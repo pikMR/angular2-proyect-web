@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../model/producto/producto';
-import { PRODUCTOS, PRODUCTOS_DETALLE } from '../mocks/mock-productos';
+import { Categoria } from '../model/categoria/categoria';
+import { CATEGORIAS} from '../mocks/mock-categorias';
+import { ARRAY_PRODUCTOS } from '../mocks/mock-productos';
 import { Http } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/Rx';
@@ -11,8 +13,12 @@ export class ProductoService {
     constructor(private _httpService: Http) {
 
     }
-    getProductos():Producto[] {
-        return PRODUCTOS_DETALLE;
+    getCategorias(param?:string):Categoria[] {
+            return CATEGORIAS;
+    }
+
+    getProductos(): Producto[] {
+        return ARRAY_PRODUCTOS;
     }
 
     getProductosNames() {
@@ -41,19 +47,25 @@ export class ProductoService {
     /*
         Recibe los productos mediante una promesa - la promesa recogerá el objeto de forma procedural.
     */
-    getProductosPromise(): Promise<Producto[]> {
-        return Promise.resolve(PRODUCTOS_DETALLE); // resolve recibe el array sustituye el objeto promise por el array.
+    getCategoriasPromise(): Promise<Categoria[]> {
+        return Promise.resolve(CATEGORIAS); // resolve recibe el array sustituye el objeto promise por el array.
     }
 
-    getProducto(id: number): Promise<Producto> {
+    getCategoria(id: number): Promise<Categoria> {
 
-        return this.getProductosPromise().then(
-            (producto) => producto.find(producto => producto.id_producto == id)
+        return this.getCategoriasPromise().then(
+            (categoria) => categoria.find(c => c.id_categoria == id)
         );
     }
 
     main() {
-        this.getProductos();    
+        this.getCategorias();    
+    }
+
+    getCategoriasPromiseDelay(): Promise<Categoria[]> {
+        return new Promise<Categoria[]>(
+            (resolve) => { setTimeout(resolve, 5000) }
+        ).then(() => this.getCategorias());
     }
 
     getProductosPromiseDelay(): Promise<Producto[]> {
@@ -61,4 +73,5 @@ export class ProductoService {
             (resolve) => { setTimeout(resolve, 5000) }
         ).then(() => this.getProductos());
     }
+
 }

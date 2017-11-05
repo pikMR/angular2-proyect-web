@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute , Params} from '@angular/router';
 import { Location } from '@angular/common';
 import { Producto } from '../../model/producto/producto';
+import { Categoria } from '../../model/categoria/categoria';
 import { ProductoService } from '../../services/producto.service';
 import { Utils } from '../../services/utils';
 
@@ -12,11 +13,11 @@ import { Utils } from '../../services/utils';
     providers: [ProductoService]
 })
 export class DetalleProductoComponent implements OnInit{
-    private detalleCats: Producto[];
+    @Input() detalleProducto: Producto[];
     @Input() detalleIndividual: Producto;
-    @Input() productoSeleccionado: Producto; // realmente actua como la categoria seleccionada.
+    @Input() categoriaSeleccionada: Categoria; // realmente actua como la categoria seleccionada.
     @Input('titulo') titulo: string;
-    @Input() detalleProds: Producto[];
+    @Input() detalleCategorias: Categoria[];
     @Input() random: number;
     constructor(private productoService: ProductoService,
                 private route: ActivatedRoute,
@@ -28,9 +29,6 @@ export class DetalleProductoComponent implements OnInit{
     ngOnInit(): void {
         /*
           Selecciona desde las categorias.
-        */
-
-        /*
           distinguimos por url.
         */
         let pathroot = this.route.pathFromRoot;
@@ -44,36 +42,40 @@ export class DetalleProductoComponent implements OnInit{
         this.route.params.forEach(
             (params: Params) =>
             {
-                if (arr.filter(v => v == "detalle")) {
-                    console.log(params + "----------------------------- DETALLE --------------------------------");
+                if (arr.find(v => v == "detalle")) {
+                    console.dir(params);
+                    console.log(" DETALLE -");
                     let id = +params['id'];
                     this.productoService.getProductoPorId(id).subscribe(
                         prod => {
-                            this.detalleIndividual = new Producto(prod["Id"], prod["Nombre"], "", 0, prod["CategoriaPrincipal"]);
+                            this.detalleIndividual = new Producto(prod["Id"], prod["Nombre"], "-detalleIndividual-", '0', prod["CategoriaPrincipal"]);
+                            this.productoService.getCategoria(prod["CategoriaPrincipal"]).then(
+                                cats => this.categoriaSeleccionada = cats
+                            );
                             console.log(this.detalleIndividual);
                         }
                     );
-                      //   (
-                      //  producto => this.detalleIndividual = producto
-                      //);
                 } else {
-                    console.log(params+"----------------------------- ELSE --------------------------------");
+                    console.dir(params);
+                    console.log(params+" ELSE -");
                     if (params['id'] != "all") {
                         /*
                           Categoría concreta - no es el producto seleccionado...
                         */
+
                         let id = +params['id'];
-                        this.productoService.getProducto(id).then(
-                            producto => this.productoSeleccionado = producto
+                        this.productoService.getCategoria(id).then(
+                            cats => { this.categoriaSeleccionada = cats; }
+
                         );
-                        this.productoService.getProductosPorCategoria(id).subscribe(pcats =>
-                        { this.detalleCats = pcats; }
+                        this.productoService.getProductosPorCategoria(id).subscribe(pprod =>
+                        { this.detalleProducto = pprod;}
                         );
                     } else {
                         /*
                           Todas las categorias (responsive)
                         */
-                        this.detalleProds = this.productoService.getProductos();
+                        this.detalleCategorias = this.productoService.getCategorias();
                         this.random = Utils.getRandomInt(1, 8);
                     }
                 }

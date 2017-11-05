@@ -1,19 +1,20 @@
 <!-- (categoria seleccionada) si existe la categoria entra si no. container-prods no está especificado... -->
-    <div class="container-prods" *ngIf="productoSeleccionado">
+    <div class="container-prods" *ngIf="categoriaSeleccionada">
   <div class="w3-card-4">
     <div class="panel panel-default effect{{random}}">
-      <h3 class="masked">{{productoSeleccionado.nombre}}</h3>
+      <h3 class="masked">{{categoriaSeleccionada.nombre}}</h3>
       <div class="panel-body">
-        <div class="w3-display-container w3-text-white"><img src="{{productoSeleccionado.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3"></div>
-        {{productoSeleccionado.descripcion}}
+        <div class="w3-display-container w3-text-white"><img src="{{categoriaSeleccionada.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3"></div>
+        {{categoriaSeleccionada.descripcion}}
       </div>
     </div>
   </div>
 </div>
-<div class="w3-row-padding">
-  <div *ngFor="let dcat of detalleCats" class="w3-third w3-center">
+
+<div class="w3-row-padding" *ngIf="detalleProducto">
+  <div *ngFor="let dcat of detalleProducto" class="w3-third w3-center">
     <div class="panel panel-default effect6">
-      <img src="{{productoSeleccionado.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3">
+      <img src="{{categoriaSeleccionada.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3">
       <div class="w3-xlarge w3-display-bottomleft w3-padding">{{dcat.Nombre}}</div>
     </div>
 
@@ -30,36 +31,47 @@
         <td><h3> {{dcat.Precio}}€/KG </h3></td>
         <td><h3>{{dcat.UnidadesStock}}</h3></td>
       </tr>
-      </table>
+    </table>
 
+  </div>
 </div>
-</div>
-        
-      
+
 <!-- Varios categorias (resonsive por defecto)-->
-  <div class="container-prods" *ngIf="detalleProds">
-  <div class="col-sm-6 col-sm-offset-3" *ngFor="let cat of detalleProds">
+<div class="container-prods" *ngIf="detalleProducto">
+  <div class="col-sm-6 col-sm-offset-3" *ngFor="let iproducto of detalleProducto">
     <div class="panel panel-default effect{{random}}">
-      <img src="{{cat.imagen.url}}" class="img-responsive"/>
+      <img src="{{iproducto.imagen.url}}" class="img-responsive" />
       <div class="panel-body">
         <div class="pull-left"></div>
-        {{cat.descripcion}}
-      </div>
+        {{iproducto.descripcion}}
       </div>
     </div>
   </div>
+</div>
 
 <!-- Producto Concreto -->
 <div class="container-prods" *ngIf="detalleIndividual">
-  
-    <div class="panel panel-default effect4">
-      <a>{{detalleIndividual.id_producto}}</a>
-      <div class="panel-body">
-        <div class="pull-left"></div>
-        {{detalleIndividual.nombre}}
-      </div>
-    </div>
-    </div>
+  <div class="panel panel-default effect6">
+    <img src="{{categoriaSeleccionada.imagen.url}}" class="img-responsive" style="top:-50px;opacity:0.3">
+    <div class="w3-xlarge w3-display-bottomleft w3-padding">{{detalleIndividual.Nombre}}</div>
+  </div>
+
+  <table class="w3-table-all w3-centered">
+    <tr>
+      <th>
+        Precio
+      </th>
+      <th>
+        Stock
+      </th>
+    </tr>
+    <tr>
+      <td><h3> {{detalleIndividual.Precio}}€/KG </h3></td>
+      <td><h3>1000</h3></td>
+    </tr>
+  </table>
+  <button class="more-productos" style="vertical-align:middle"><span>Mas resultados para Articulos de tipo {{categoriaSeleccionada.nombre}}</span></button>
+</div>
 
 
 <!-->div class="panel-footer clearfix">

@@ -1,7 +1,7 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { PRODUCTOS } from '../../mocks/mock-productos';
 import { Producto } from '../../model/producto/producto';
+import { Categoria } from '../../model/categoria/categoria';
 import { Utils } from '../../services/utils';
 import { ProductoService } from '../../services/producto.service'; // no usado pero se usara
 import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
@@ -17,12 +17,16 @@ export class NavMenuComponent{
     esMovil = false; // transición entre movil y desktop
     rerender = false;
     buscaSelected: CompleterItem;
+    public icategoria: Categoria[] = [];
 
     constructor(private router: Router, private cdRef: ChangeDetectorRef, private completerService: CompleterService, private productoService: ProductoService) {
         if (Utils.esMobil())
             this.esMovil = true;
         this.dataService = null;
         this.buscaSelected = null;
+        if (this.icategoria.length == 0) {
+            this.icategoria = productoService.getCategorias("ico");
+        }
     }
 
 
@@ -39,8 +43,6 @@ export class NavMenuComponent{
         'Oferta Especial 1', 'Oferta Especial 2'];
     public items3: string[] = ['1',
         '100', '50'];
-    public prods: Producto[] = PRODUCTOS;
-   
 
     /*
         Efecto dropdown desplegable menu.
@@ -92,9 +94,9 @@ export class NavMenuComponent{
           this.doRerender();
     }
 
-    selectProducto = (item: Producto) => {
-        console.log(item.nombre);
-        this.router.navigate(['/categoria/'+item.id_producto]);
+    selectCategoria = (item: Categoria) => {
+        console.log("-selectCategoria=>" + '/categoria/' + item.id_categoria);
+        this.router.navigate(['/categoria/'+item.id_categoria]);
     }
 
     moveToWhatsapp() {
@@ -137,7 +139,7 @@ export class NavMenuComponent{
         }
     }
 
-    getCatalogoPorProducto(selected: CompleterItem) {
+    moveToProducto(selected: CompleterItem) {
         if (selected) {
             //console.dir(selected);
             this.buscaSelected = selected;

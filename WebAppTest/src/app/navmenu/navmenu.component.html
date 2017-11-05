@@ -17,7 +17,7 @@
       <li  class="nav-enlaces">
         Nuestros Productos <i class="fa fa-angle-down"></i>
         <ul>
-          <li *ngFor="let choice of prods" (click)="selectProducto(choice)">{{choice.nombre}}<img src="{{choice.imagen.url}}" /></li>
+          <li *ngFor="let choice of icategoria" (click)="selectCategoria(choice)">{{choice.nombre}}<img src="{{choice.ico.url}}" /></li>
         </ul>
       </li>
       <li  class="nav-enlaces">
@@ -31,7 +31,7 @@
       <li (click)="goContact()" class="nav-enlaces">Contacto</li>
       <li></li>
       <li class="iconados"><a class="fa fa-search"></a><!-->input type="text" name="search" placeholder="Buscar"-->
-        <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" placeholder="Buscar" name="search" type="text" class="completer-input" (click)="cargarBuscador($event)"  (selected)="getCatalogoPorProducto($event)"></ng2-completer>
+        <ng2-completer [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" placeholder="Buscar" name="search" type="text" class="completer-input" (click)="cargarBuscador($event)"  (selected)="moveToProducto($event)"></ng2-completer>
       <!-- Search Filled icon by Icons8 -->
        </li>
       <li class="iconados" (click)="moveToWhatsapp()"><a class="fa fa-whatsapp" href="#"></a>Llámanos</li>

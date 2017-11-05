@@ -1,5 +1,6 @@
 import { Component , OnInit } from '@angular/core'; // OnInit es para la carga procedural.
 import { Producto } from '../../model/producto/producto'
+import { Categoria } from '../../model/categoria/categoria'
 import { ProductoService } from '../../services/producto.service';
 import { Router } from '@angular/router';
 
@@ -12,11 +13,11 @@ import { Router } from '@angular/router';
 
 
 export class HomeComponent implements OnInit {
-    titulo: string = 'producto seleccionado : ';
-    producto: Producto = new Producto(1, 'paletilla', 'paletilla de cerdo',20,'cerdo');
+    titulo: string = 'categoría seleccionada : ';
+    categoria: Categoria = new Categoria(1, 'paletilla', 'paletilla de cerdo');
 
-    productos : Producto[];
-    productoSeleccionado: Producto;
+    categorias : Categoria[];
+    categoriaSeleccionada: Categoria;
 
     /*
         acceso al componente mediante el servicio.
@@ -25,44 +26,43 @@ export class HomeComponent implements OnInit {
         //this.productoSeleccionado = new Producto();
     }
 
-    private getProductos():void {
-        this.productos = this.productoService.getProductos();
+    private getCategorias():void {
+        this.categorias = this.productoService.getCategorias();
     }
 
-    private getProductosPromise(): void {
-         this.productoService.getProductosPromise()
+    private getCategoriasPromise(): void {
+         this.productoService.getCategoriasPromise()
             .then(
             (resolve) =>    // resolve contendrá los productos del mock / servicio.
                 {
-                    this.productos = resolve;
+                    this.categorias = resolve;
                 }
          );
     }
 
-    private getProductosPromiseDelay(): void 
+    private getCategoriasPromiseDelay(): void 
     {
-        this.productoService.getProductosPromiseDelay()
+        this.productoService.getCategoriasPromiseDelay()
             .then(
               (resolve) =>    // resolve contendrá los productos del mock / servicio.
               {
-                  this.productos = resolve;
+                  this.categorias = resolve;
               }
             );
     }
 
     ngOnInit(): void {
        // this.getProductos();
-        this.getProductosPromiseDelay();
+        this.getCategoriasPromiseDelay();
     }
 
-    seleccionar(producto : Producto) {
-        this.productoSeleccionado = producto;
-        console.log(producto.nombre);
+    seleccionar(categoria : Categoria) {
+        this.categoriaSeleccionada = categoria;
     }
 
-    irDetalle(producto: Producto): void {
+    irDetalle(categoria: Categoria): void {
         // nos vamos al producto seleccionado.
-        let link = ['/categoria', producto.id_producto];
+        let link = ['/categoria', categoria.id_categoria];
         this.route.navigate(link);
     }
 }

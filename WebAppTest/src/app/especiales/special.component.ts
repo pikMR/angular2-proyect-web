@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../model/producto/producto';
 import { ProductoService } from '../../services/producto.service';
 
@@ -17,7 +17,7 @@ export class SpecialComponent implements OnInit{
     ngOnInit(): void {
         // la argumentación de ser especial sería estar entre el 1 y el 5.
         this.productoService.getProductosPromiseDelay().then(
-            (productos) => this.productos = productos.splice(1, 5)
+            (fcat) => this.productos = fcat.splice(1, 5)
         )
     }
 
