@@ -23,9 +23,9 @@
       <li  class="nav-enlaces">
         Oferta Especial <i class="fa fa-angle-down" *ngFor="let nom of nombres"></i>
         <ul>
-          <li>Oferta1<span>1€</span></li>
-          <li>Oferta2<span>20€</span></li>
-          <li>Oferta3<span>30€</span></li>
+          <li>{{items2[0]}}<span>{{items3[0]}}€</span></li>
+          <li>{{items2[1]}}<span>{{items3[1]}}€</span></li>
+          <li>{{items2[2]}}<span>{{items3[2]}}€</span></li>
         </ul>
       </li>
       <li (click)="goContact()" class="nav-enlaces">Contacto</li>

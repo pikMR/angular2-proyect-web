@@ -28,15 +28,15 @@ export class ProductoService {
             });
     }
 
-    getProductoPorId(id: number): Observable<Producto[]> {
+    getProductoPorId(id: number): Observable<Response> {
         return this._httpService.get('/api/Producto/' + id)
-            .map((response) => <Producto[]>response.json())
+            .map((response) => response.json())
             .catch(this.handleError);
     }
 
-    getProductosPorCategoria(id: number): Observable<Producto[]> {
+    getProductosPorCategoria(id: number): Observable<Response> {
         return this._httpService.get('/api/Producto?cat=' + id)
-            .map((response) => <Producto[]>response.json())
+            .map((response) => response.json())
             .catch(this.handleError);
     }
 

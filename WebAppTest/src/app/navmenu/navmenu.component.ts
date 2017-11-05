@@ -39,10 +39,10 @@ export class NavMenuComponent{
         this.rerender = false;
     }
 
-    public items2: string[] = ['Oferta \u00danica',
-        'Oferta Especial 1', 'Oferta Especial 2'];
-    public items3: string[] = ['1',
-        '100', '50'];
+    public items2: string[] = ['Pechuga Pollo',
+        'Cabeza de Cordero', 'Costillar'];
+    public items3: string[] = ['3',
+        '4', '5'];
 
     /*
         Efecto dropdown desplegable menu.
