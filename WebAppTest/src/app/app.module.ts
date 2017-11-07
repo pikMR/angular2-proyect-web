@@ -20,6 +20,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { Ng2CompleterModule } from "ng2-completer";
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { Ng2CompleterModule } from "ng2-completer";
       BsDropdownModule.forRoot(),
       CollapseModule.forRoot(),
       HttpModule,
-      Ng2CompleterModule
+      Ng2CompleterModule,
+      ModalModule.forRoot(),
+      BootstrapModalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

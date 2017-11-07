@@ -7,7 +7,7 @@ import { Utils } from '../../services/utils';
     selector: 'detalle-producto',
     templateUrl: './../views/detalleProducto.component.html',
     styleUrls: ['./../views/detalleProducto.component.css'],
-    providers: [ProductoService]
+    providers: [ProductoService],
 })
 export class DetalleProductoComponent implements OnInit{
     modelproducto: any; modelindividual: any; modelcategoria: any; modelcategorias: any;
@@ -18,13 +18,15 @@ export class DetalleProductoComponent implements OnInit{
                 private location: Location,
                 private _activatedRoute: ActivatedRoute,
         ) {
-
     }
     ngOnInit(): void {
+        console.log(" - DetalleProductoComponent");
         /*
           Selecciona desde las categorias.
           distinguimos por url.
         */
+
+
         let pathroot = this.route.pathFromRoot;
         let arr = [];
         pathroot.forEach(
@@ -35,6 +37,8 @@ export class DetalleProductoComponent implements OnInit{
 
         this.route.params.forEach(
             (params: Params) => {
+                console.log("--params");
+                console.dir(params);
                 if (arr.find(v => v == "detalle")) {
                     console.dir(params);
                     console.log(" DETALLE -");
@@ -52,19 +56,21 @@ export class DetalleProductoComponent implements OnInit{
                         );
 
                 } else {
-                    console.dir(params);
-                    console.log(params+" ELSE -");
+                    
                     if (params['id'] != "all") {
+                        let paramId = +params['id'];
                         /*
                           Categoría concreta - no es el producto seleccionado...
                         */
 
-                        let id = +params['id'];
-                        this.productoService.getCategoria(id).then(
+                        //let paramId = this.route.queryParams["_value"].id;
+                        console.log("qparams:");
+                        console.dir(this.route.queryParams);
+                        this.productoService.getCategoria(paramId).then(
                             (response) => { this.modelcategoria = response; }
 
                         );
-                        this.productoService.getProductosPorCategoria(id).subscribe((response) =>
+                        this.productoService.getProductosPorCategoria(paramId).subscribe((response) =>
                         { this.modelproducto = response; }
                         );
 
