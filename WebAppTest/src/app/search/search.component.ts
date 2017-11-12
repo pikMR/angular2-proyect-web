@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../model/producto/producto';
 import { ProductoService } from '../../services/producto.service'; // no usado pero se usara
-import { CompleterService, CompleterData } from 'ng2-completer';
+import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
+import { Router } from '@angular/router';
 @Component({
     selector: 'busquedas',
     templateUrl: './search.component.html',
@@ -10,6 +11,8 @@ import { CompleterService, CompleterData } from 'ng2-completer';
 })
 export class SearchComponent implements OnInit {
     apiValues: string[] = [];
+    buscaSelected: CompleterItem;
+
     ngOnInit(): void {
         /*this._httpService.get('/api/values').subscribe(values => {
             this.apiValues = values.json() as string[];
@@ -26,7 +29,28 @@ export class SearchComponent implements OnInit {
         { color: 'yellow', value: '#ff0' },
         { color: 'black', value: '#000' }
     ];
-    constructor(private completerService: CompleterService) {
-        this.dataService = completerService.local(this.searchData, 'color', 'color');
+    constructor(private router: Router,private completerService: CompleterService, private productoService: ProductoService) {
+        this.dataService = null;
+        this.buscaSelected = null;
+    }
+
+    /*
+  Buscador
+*/
+
+    public cargarBuscador(event) {
+        if (this.dataService == null) {
+            this.dataService = this.completerService.local(this.productoService.getProductosNames(), 'Nombre', 'Nombre');
+        }
+    }
+
+    moveToProducto(selected: CompleterItem) {
+        if (selected) {
+            //console.dir(selected);
+            this.buscaSelected = selected;
+        }
+        //console.log("Cat: " + this.buscaSelected.originalObject["CategoriaPrincipal"]);
+        this.router.navigate(['/detalle/' + this.buscaSelected.originalObject["Id"]]);
+        //this.router.navigate(['/detalle/'+item.id_producto]);
     }
 }

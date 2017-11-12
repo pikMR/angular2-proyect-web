@@ -33,6 +33,10 @@ const rutas: Routes = [
         component: DetalleProductoComponent
     },
     {
+        path: 'categoria/:id/:titulo',
+        component: DetalleProductoComponent
+    },
+    {
         path: 'categoria/all',
         component: DetalleProductoComponent
     },

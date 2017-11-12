@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute , Params} from '@angular/router';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { ProductoService } from '../../services/producto.service';
 import { Utils } from '../../services/utils';
 @Component({
@@ -17,6 +18,7 @@ export class DetalleProductoComponent implements OnInit{
                 private route: ActivatedRoute,
                 private location: Location,
                 private _activatedRoute: ActivatedRoute,
+                private router: Router
         ) {
     }
     ngOnInit(): void {
@@ -56,16 +58,17 @@ export class DetalleProductoComponent implements OnInit{
                         );
 
                 } else {
-                    
-                    if (params['id'] != "all") {
+                    console.log("titulo : " + params['titulo']);
+                    console.log("id : " + params['id']);
+                    if (params['titulo']==null && params['id'] != "all") {
+                        // ID
+                        console.log("#ID");
                         let paramId = +params['id'];
+
                         /*
                           Categoría concreta - no es el producto seleccionado...
                         */
 
-                        //let paramId = this.route.queryParams["_value"].id;
-                        console.log("qparams:");
-                        console.dir(this.route.queryParams);
                         this.productoService.getCategoria(paramId).then(
                             (response) => { this.modelcategoria = response; }
 
@@ -74,12 +77,23 @@ export class DetalleProductoComponent implements OnInit{
                         { this.modelproducto = response; }
                         );
 
-                    } else {
+                    } else if (params['id'] != "all") {
+                        console.log("#TITULO:");
                         /*
                           Todas las categorias (responsive)
                         */
+                        this.productoService.getCategoria(params['id']).then(
+                            (response) => { this.modelcategoria = response; }
+                        );
+                        this.productoService.getProductosPorCategoria(params['id']).subscribe((response) =>
+                        { this.modelproducto = response; }
+                        );
+                    } else {
+                        // all
+                        console.log("#ELSE:");
                         this.modelcategorias = this.productoService.getCategorias();
                         this.random = Utils.getRandomInt(1, 8);
+
                     }
                 }
                 
@@ -90,6 +104,10 @@ export class DetalleProductoComponent implements OnInit{
 
     isAtras() {
         this.location.back();
+    }
+
+    moveToCategoria() {
+        this.router.navigate(['/categoria/' + this.modelcategoria["id_categoria"]]);
     }
 
 }

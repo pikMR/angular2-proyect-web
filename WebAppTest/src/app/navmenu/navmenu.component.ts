@@ -167,7 +167,9 @@ export class NavMenuComponent{
         //this.router.navigate(['/detalle/'+item.id_producto]);
     }
 
-    /*copy() {
+    /*
+    -- copiar al clipboard
+    copy() {
         var copyText = document.getElementById("numcopy");
         copyText[0].select();
         document.execCommand("Copy");

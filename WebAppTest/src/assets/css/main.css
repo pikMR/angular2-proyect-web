@@ -1883,7 +1883,9 @@ ol.default {
 /* Banner */
 
 #banner {
-  margin-left: 250px;
+  /*margin-left: 250px;*/
+  margin-top:100px;
+  left:10%;
   position: absolute;
   padding: 4.5em;
   z-index: 100;
@@ -2310,6 +2312,7 @@ ol.default {
     /* Banner */
 
     #banner {
+        left:auto;
         text-align: center;
         padding: 15px 15px 15px 15px;
         margin: 0 auto !important;
@@ -4048,4 +4051,10 @@ a {
   padding: 0;
   outline: 0;
   width: 50%;
+}
+
+@media screen and (max-width: 736px) {
+  .modal-content {
+    width: 100%;
+  }
 }
